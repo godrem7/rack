@@ -1,0 +1,6 @@
+{
+  "name": "Atelier Marlow — Apparel Archive",
+  "description": "Interactive hanging rack portfolio showcasing limited studio garment editions, textile specifications, and colorway studies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

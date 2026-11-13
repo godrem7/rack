@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  /* 60-30-10 Warm Studio Neutral Palette (<5% saturation) */
+  --color-canvas: #ecebe7;
+  --color-surface: #f6f5f2;
+  --color-surface-hover: #e3e1db;
+  --color-ink: #181816;
+  --color-ink-muted: #61605a;
+  --color-hairline: rgba(24, 24, 22, 0.12);
+  --color-hairline-strong: rgba(24, 24, 22, 0.24);
+  --color-accent: #1d4ed8;
+  --color-accent-soft: rgba(29, 78, 216, 0.1);
+  --color-accent-ink: #ffffff;
+
+  /* Studio Status Tokens (paired with text labels) */
+  --color-status-available: #1e5638;
+  --color-status-limited: #8a5314;
+  --color-status-archived: #61605a;
+
+  /* Chrome Garment Rail Tokens */
+  --rack-metal-highlight: #fbfbfa;
+  --rack-metal-light: #dcdbd6;
+  --rack-metal-mid: #a9a7a0;
+  --rack-metal-dark: #4f4e49;
+  --rack-shadow: rgba(24, 24, 22, 0.16);
+
+  /* Typography */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Spacing & Radii */
+  --radius-control: 9999px;
+  --radius-card: 0.75rem;
+  --radius-sheet: 1rem;
+  --shadow-sheet: 0 24px 64px -16px rgba(24, 24, 22, 0.18), 0 4px 16px -4px rgba(24, 24, 22, 0.08);
+
+  /* Motion Timing Tokens */
+  --ease-rack: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-hover: 280ms;
+  --duration-focus: 380ms;
+  --duration-chrome: 180ms;
+}
+
+@theme {
+  --color-canvas: var(--color-canvas);
+  --color-surface: var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-hairline: var(--color-hairline);
+  --color-hairline-strong: var(--color-hairline-strong);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-accent-ink: var(--color-accent-ink);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+html,
+body {
+  background-color: var(--color-canvas);
+  background-image: radial-gradient(rgba(24, 24, 22, 0.055) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Global accessible focus ring */
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Zero-JS Progressive Enhancement Fallback for Garment Rack */
+.no-js-rack-item .rack-front-layer {
+  opacity: 0;
+  transition: opacity var(--duration-hover) var(--ease-rack), transform var(--duration-hover) var(--ease-rack);
+}
+
+.no-js-rack-item:hover .rack-front-layer,
+.no-js-rack-item:focus-visible .rack-front-layer {
+  opacity: 1;
+}
+
+.no-js-rack-item:hover .rack-side-layer,
+.no-js-rack-item:focus-visible .rack-side-layer {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
